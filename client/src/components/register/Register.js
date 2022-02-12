@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Register.css'
+import './Register.css';
+import axios from 'axios';
 
 
 
@@ -24,9 +25,29 @@ const Register = () => {
     }
 
 
+
+    const handleRegister = async () => {
+        const { Name, email, password, confirmPassword } = user;
+
+        if (Name && email && password && (password === confirmPassword)) {
+            alert('posted')
+            const data = await axios.post('http://localhost:5000/register', user);
+
+            console.log(data)
+        } else {
+            alert('invalid input')
+        }
+
+
+
+
+
+    }
+
+
     return (
         <div className='register'>
-            {console.log('User', user)}
+
             <h1>Register</h1>
             <label htmlFor="Name">Enter Your Name:
                 <input type="text" placeholder='Name' name='Name' value={user.Name} onChange={handleChange} />
@@ -45,7 +66,7 @@ const Register = () => {
                 <input type="text" placeholder='confirm password' name='confirmPassword' value={user.confirmPassword} onChange={handleChange} />
             </label>
 
-            <div className="button">Register</div>
+            <div className="button" onClick={handleRegister}>Register</div>
             <div>or</div>
             <div className="button">Login</div>
         </div>

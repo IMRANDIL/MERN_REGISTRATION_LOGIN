@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { registerForm } = require('../controller/Register')
+const registerForm = require('../controller/Register')
 
 
 router.get('/', (req, res) => {

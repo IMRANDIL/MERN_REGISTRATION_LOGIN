@@ -6,13 +6,13 @@ const registerForm = async (req, res) => {
     try {
         const password = req.body.password;
         const confirmPassword = req.body.confirmPassword;
+        console.log(req.body)
         if (password === confirmPassword) {
 
 
 
             const register = new Register({
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                Name: req.body.Name,
                 email: req.body.email,
                 password: password,
                 confirmPassword: confirmPassword
@@ -38,6 +38,5 @@ const registerForm = async (req, res) => {
 
 
 
-module.exports = {
+module.exports =
     registerForm
-}
