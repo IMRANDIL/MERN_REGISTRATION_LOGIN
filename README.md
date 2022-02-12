@@ -1,5 +1,5 @@
 # MERN_REGISTRATION_LOGIN
 
-# link
+# link to app
 
 https://client-zeta-indol.vercel.app/
