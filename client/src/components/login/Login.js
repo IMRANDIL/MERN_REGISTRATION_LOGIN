@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import axios from 'axios'
 
-const Login = () => {
+const Login = ({ setLoginUser }) => {
+
+    let navigate = useNavigate();
 
     const [user, setUser] = useState({
 
@@ -20,9 +24,27 @@ const Login = () => {
     }
 
 
+
+    const handleLogin = async () => {
+        const { email, password } = user;
+
+        if (email && password) {
+            const data = await axios.post('https://form-backend-phi.vercel.app/login', user);
+
+            alert(data.data.msg);
+            setLoginUser(data.data.user);
+            navigate('/')
+        } else {
+            alert('All fields required!')
+        }
+
+
+    }
+
+
     return (
         <div className='login'>
-            {console.log('User', user)}
+
             <h1>Login</h1>
             <label htmlFor="email">Enter Your Email:
                 <input type="text" placeholder='Email' name='email' value={user.email} onChange={handleChange} />
@@ -31,9 +53,9 @@ const Login = () => {
                 <input type="text" placeholder='Password' name='password' value={user.password} onChange={handleChange} />
             </label>
 
-            <div className="button">Login</div>
+            <div className="button" onClick={handleLogin}>Login</div>
             <div>or</div>
-            <div className="button">Register</div>
+            <div className="button" onClick={() => navigate('/register')}>Register</div>
         </div>
     )
 }

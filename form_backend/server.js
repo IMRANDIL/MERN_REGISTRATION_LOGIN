@@ -7,27 +7,26 @@ const app = express();
 const cors = require('cors');
 const path = require('path')
 
-require('../backend/db/connection');
+require('./db/connection')
 
-const homeRouter = require('../backend/Router/router')
+const homeRouter = require('./Router/router')
 
 //MIDDLEWARES..
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, 'public')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 
-app.set('view engine', 'ejs');
 
-
-app.set('views', 'views');
 
 
 app.use('/', homeRouter)
 
 
-
+app.get('*', (req, res) => {
+    return res.send(`<h1 style="text-align:center">Oops..!! You lost the path.</h1><a href="https://client-zeta-indol.vercel.app/" style="color:red; text-decoration:none" target="_blank">Back to App</a>`)
+})
 
 const PORT = process.env.PORT || 3000;
 

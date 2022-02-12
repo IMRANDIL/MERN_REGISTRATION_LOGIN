@@ -1,11 +1,14 @@
 import React from 'react';
 import './HomePage.css';
 
-const HomePage = () => {
+const HomePage = ({ setLoginUser, user }) => {
+
+
+
     return (
         <div className='homepage'>
-            <h1>Home Page</h1>
-            <div className="button">
+            <h1>Hello {user.Name}</h1>
+            <div className="button" onClick={() => setLoginUser({})}>
                 Logout
             </div>
         </div>
